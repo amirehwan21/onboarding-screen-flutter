@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onboarding_screen/constant.dart';
+import 'menu_option.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -213,7 +214,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         width: double.infinity,
         color: Colors.white,
         child: GestureDetector(
-          onTap: () => print('Get started button clicked'),
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) {
+                return MenuOptionsScreen();
+              },
+            ));
+          },
           child: Center(
             child: Padding(
               padding: EdgeInsets.only(bottom: 30.0),
