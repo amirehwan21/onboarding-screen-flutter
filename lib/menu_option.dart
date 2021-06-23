@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'option_model.dart';
+import 'travelUI/search_screen.dart';
 
 class MenuOptionsScreen extends StatefulWidget {
   @override
@@ -82,6 +83,13 @@ class _MenuOptionsScreenState extends State<MenuOptionsScreen> {
                 onTap: () {
                   setState(() {
                     _selectedOption = index -1;
+                    if (index == 1) {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return SearchScreen();
+                        },
+                      ));
+                    }
                   });
                 },
               ),

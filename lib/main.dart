@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:onboarding_screen/onboarding_screen.dart';
-import 'menu_option.dart';
 
 void main() {
   runApp(MyApp());
