@@ -1,6 +1,10 @@
-# onboarding_screen
+<img src="https://user-images.githubusercontent.com/34615664/123035151-6c3cdc00-d41d-11eb-9478-39ba759590dd.png" width="300" height="600">
+
+# Onboarding Screen
 
 A new Flutter project.
+
+This is for education purpose. Reference from [Marcus Ng Youtube Channel](https://www.youtube.com/watch?v=6kaEbTfb444)
 
 ## Getting Started
 
