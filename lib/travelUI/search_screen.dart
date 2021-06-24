@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'place_model.dart';
+import 'place_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -40,13 +41,12 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               trailing: InkResponse(
                 onTap: () {
-                  print("");
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (_) => PlaceScreen(place: place),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => PlaceScreen(place: place),
+                    ),
+                  );
                 },
                 child: Container(
                   width: 50.0,
@@ -144,111 +144,119 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 50),
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: () => print('Menu'),
-              color: Colors.black,
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 50),
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                onPressed: () => Navigator.pop(context),
+                color: Colors.black,
+                ),
+                IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: () => print('Menu'),
+                color: Colors.black,
+                ),
+              ],
+            ),
+            SizedBox(height: 30.0),
+            _buildHeaderTitle(),
+            SizedBox(height: 40.0),
+            _buildBookingBtn(),
+            SizedBox(height: 30.0),
+            TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Where',
+                icon: Container(
+                  width: 50.0,
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: Color(0xFFEEF8FF)
+                  ),
+                  child: Icon(
+                    Icons.location_on,
+                    size: 25.0,
+                    color: Color(0xFF309DF1),
+                  ),
+                )
+              )
+            ),
+            Divider(height: 40.0),
+            TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Check-in - Check-out',
+                icon: Container(
+                  width: 50.0,
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: Color(0xFFEEF8FF)
+                  ),
+                  child: Icon(
+                    Icons.calendar_today,
+                    size: 25.0,
+                    color: Color(0xFF309DF1),
+                  ),
+                )
+              )
+            ),
+            Divider(height: 40.0),
+            TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: '1 Adults, 0 Children, 1 Room',
+                icon: Container(
+                  width: 50.0,
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: Color(0xFFEEF8FF)
+                  ),
+                  child: Icon(
+                    Icons.person,
+                    size: 25.0,
+                    color: Color(0xFF309DF1),
+                  ),
+                )
+              )
+            ),
+            Divider(height: 40.0),
+            FlatButton(
+              padding: EdgeInsets.symmetric(vertical: 25.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
               ),
-            ],
-          ),
-          SizedBox(height: 30.0),
-          _buildHeaderTitle(),
-          SizedBox(height: 40.0),
-          _buildBookingBtn(),
-          SizedBox(height: 30.0),
-          TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Where',
-              icon: Container(
-                width: 50.0,
-                height: 50.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.0),
-                  color: Color(0xFFEEF8FF)
-                ),
-                child: Icon(
-                  Icons.location_on,
-                  size: 25.0,
-                  color: Color(0xFF309DF1),
-                ),
-              )
-            )
-          ),
-          Divider(height: 40.0),
-          TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Check-in - Check-out',
-              icon: Container(
-                width: 50.0,
-                height: 50.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.0),
-                  color: Color(0xFFEEF8FF)
-                ),
-                child: Icon(
-                  Icons.calendar_today,
-                  size: 25.0,
-                  color: Color(0xFF309DF1),
-                ),
-              )
-            )
-          ),
-          Divider(height: 40.0),
-          TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: '1 Adults, 0 Children, 1 Room',
-              icon: Container(
-                width: 50.0,
-                height: 50.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.0),
-                  color: Color(0xFFEEF8FF)
-                ),
-                child: Icon(
-                  Icons.person,
-                  size: 25.0,
-                  color: Color(0xFF309DF1),
-                ),
-              )
-            )
-          ),
-          Divider(height: 40.0),
-          FlatButton(
-            padding: EdgeInsets.symmetric(vertical: 25.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
+              color: Color(0xFF309DF1),
+              child: Text(
+                'Search',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                )
+              ),
+              onPressed: () => print('Search'),
             ),
-            color: Color(0xFF309DF1),
-            child: Text(
-              'Search',
+            SizedBox(height: 30.0),
+            Text(
+              'Popular places',
               style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.white,
+                fontSize: 24.0,
                 fontWeight: FontWeight.bold,
-              )
+              ),
             ),
-            onPressed: () => print('Search'),
-          ),
-          SizedBox(height: 30.0),
-          Text(
-            'Popular places',
-            style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 30.0),
-          _buildPopularPlaces(),
-        ],
+            SizedBox(height: 30.0),
+            _buildPopularPlaces(),
+          ],
+        ),
       ),
     );
   }
